@@ -1,0 +1,13 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "scripts": {
+    "pre-commit-server": "cd server && npm run foo && npm run bar && npm run test"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "pre-commit-server"
+  ]
+}
