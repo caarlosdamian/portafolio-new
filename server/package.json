@@ -8,16 +8,9 @@
     "start": "node ./dist/index.js",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
-    "start:dev": "nodemon ./src/index.ts",
-    "test": "echo \"Error: I SHOULD FAIL LOLOLOLOLOL \" && exit 1",
-    "foo": "echo \"fooo\" && exit 0",
-    "bar": "echo \"bar\" && exit 0"
+    "start:dev": "nodemon ./src/index.ts"
   },
-  "pre-commit": [
-    "foo",
-    "bar",
-    "test"
-  ],
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -33,7 +26,6 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "nodemon": "^3.1.7",
-    "pre-commit": "^1.2.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
