@@ -29,12 +29,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const routes_1 = __importDefault(require("./routes"));
+const connectDb_1 = require("./utils/connectDb");
+const dotenv = __importStar(require("dotenv"));
+const passport_1 = __importDefault(require("passport"));
+const express_session_1 = __importDefault(require("express-session"));
+require("./strategies/local-strategy");
+dotenv.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8080;
 app.use((0, express_1.json)());
 app.use((0, cors_1.default)());
+app.use((0, express_session_1.default)({
+    secret: process.env.SECRET || '',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        secure: false, // Set true if using HTTPS
+        maxAge: 1000 * 60 * 60 * 24 // Session expiration time in milliseconds (1 day here)
+    }
+}));
+app.use(passport_1.default.initialize());
+app.use(passport_1.default.session()); // attaching user prop to session
 app.use(routes_1.default);
 app.listen(port, () => {
     console.log(`App started at http://localhost:${port}`);
-    // connectToDb();
+    (0, connectDb_1.connectDb)();
 });
