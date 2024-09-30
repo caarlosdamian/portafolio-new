@@ -33,11 +33,9 @@ passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 
 exports.default = passport_1.default.use(new passport_local_1.Strategy((username, password, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const findUser = yield user_model_1.UserModel.findOne({ username });
-        console.log({ findUser });
         if (!findUser)
             throw new Error('User not found');
         const isCorrectPassword = yield (0, helpers_1.comparePassword)(password, findUser.password);
-        console.log({ isCorrectPassword });
         if (!isCorrectPassword)
             throw new Error('Invalid Credentials');
         done(null, findUser);

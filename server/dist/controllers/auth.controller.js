@@ -1,6 +1,15 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authStatus = exports.authHandler = void 0;
+exports.authLogoutHandler = exports.authStatusHandler = exports.authHandler = void 0;
 const authHandler = (req, res) => {
     try {
         res.status(200).send(req.user);
@@ -13,7 +22,7 @@ const authHandler = (req, res) => {
     }
 };
 exports.authHandler = authHandler;
-const authStatus = (req, res) => {
+const authStatusHandler = (req, res) => {
     try {
         req.user
             ? res.status(200).send(req.user)
@@ -23,4 +32,21 @@ const authStatus = (req, res) => {
         res.json(error);
     }
 };
-exports.authStatus = authStatus;
+exports.authStatusHandler = authStatusHandler;
+const authLogoutHandler = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!req.user)
+            res.sendStatus(401);
+        req.logout(function (err) {
+            if (err) {
+                next(err);
+            }
+            res.json({ message: 'Succesfully logout' });
+        });
+        res.json({ message: 'Succesfully logout' });
+    }
+    catch (error) {
+        res.json({ message: error }).sendStatus(400);
+    }
+});
+exports.authLogoutHandler = authLogoutHandler;
