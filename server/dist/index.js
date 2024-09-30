@@ -32,7 +32,7 @@ const routes_1 = __importDefault(require("./routes"));
 const connectDb_1 = require("./utils/connectDb");
 const dotenv = __importStar(require("dotenv"));
 const passport_1 = __importDefault(require("passport"));
-const express_session_1 = __importDefault(require("express-session"));
+const express_session_1 = __importStar(require("express-session"));
 require("./strategies/local-strategy");
 dotenv.config();
 const app = (0, express_1.default)();
@@ -43,6 +43,7 @@ app.use((0, express_session_1.default)({
     secret: process.env.SECRET || '',
     saveUninitialized: false,
     resave: false,
+    store: new express_session_1.MemoryStore({}),
     cookie: {
         secure: false, // Set true if using HTTPS
         maxAge: 1000 * 60 * 60 * 24 // Session expiration time in milliseconds (1 day here)
