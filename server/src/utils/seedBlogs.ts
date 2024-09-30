@@ -22,7 +22,7 @@ export const seedBlogs = async () => {
 
   try {
     blogArticles.forEach(async (element) => {
-      await BlogModel.create({ ...element, userId: user?._id });
+      // await BlogModel.create({ ...element, userId: user?._id });
     });
   } catch (error) {}
 };
