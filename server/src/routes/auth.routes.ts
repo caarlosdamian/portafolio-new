@@ -7,7 +7,7 @@ const router = Router();
 router.post(
   '/',
   (req, _res, next) => {
-    console.log(req);
+    // console.log(req);
     next();
   },
   passport.authenticate('local'),

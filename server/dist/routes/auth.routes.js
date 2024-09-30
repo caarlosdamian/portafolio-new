@@ -8,7 +8,7 @@ const passport_1 = __importDefault(require("passport"));
 const auth_controller_1 = require("../controllers/auth.controller");
 const router = (0, express_1.Router)();
 router.post('/', (req, _res, next) => {
-    console.log(req);
+    // console.log(req);
     next();
 }, passport_1.default.authenticate('local'), auth_controller_1.authHandler);
 router.get('/status', auth_controller_1.authStatus);
