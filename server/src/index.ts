@@ -4,7 +4,7 @@ import router from './routes';
 import { connectDb } from './utils/connectDb';
 import * as dotenv from 'dotenv';
 import passport from 'passport';
-import session from 'express-session'
+import session, { MemoryStore } from 'express-session'
 import './strategies/local-strategy'
 dotenv.config();
 
@@ -19,6 +19,8 @@ app.use(
     secret: process.env.SECRET || '' ,
     saveUninitialized: false,
     resave: false,
+    store: new MemoryStore({
+    }),
     cookie: {
       secure: false,  // Set true if using HTTPS
       maxAge: 1000 * 60 * 60 * 24  // Session expiration time in milliseconds (1 day here)
