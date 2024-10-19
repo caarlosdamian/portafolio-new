@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import { Blog, Home, Post } from '../pages';
+import { About, Blog, Home, Post } from '../pages';
 import { RootLayout } from '../layout';
 
 export const routes: RouteObject[] = [
@@ -10,6 +10,10 @@ export const routes: RouteObject[] = [
       {
         element: <Home />,
         index: true,
+      },
+      {
+        element: <About />,
+        path: '/about',
       },
       {
         path: '/posts',
