@@ -1,14 +1,14 @@
 export const HEADER_CONST = [
   {
     path: '/about',
-    label: 'About',
+    label: 'nav_about',
   },
   {
     path: '/posts',
-    label: 'Blog',
+    label: 'nav_blog',
   },
   {
     path: '#contact',
-    label: 'Contact',
+    label: 'nav_contact',
   },
 ];
