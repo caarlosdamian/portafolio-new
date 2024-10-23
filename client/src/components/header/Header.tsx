@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <header>
       <nav role="navigation">
-        <ul>
+        <ul className='flex gap-3'>
           {HEADER_CONST.map(({ label, path }) => (
             <li key={path}>
               <Link to={path}>{formatMessage({ id: label })}</Link>
