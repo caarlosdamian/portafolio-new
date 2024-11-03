@@ -1,19 +1,26 @@
 import { Link } from 'react-router-dom';
-import { HEADER_CONST } from '../../utils';
-import { useIntl } from 'react-intl';
+import { NavMenu } from '../navMenu/NavMenu';
+import { useState } from 'react';
 
 export const Header = () => {
-  const { formatMessage } = useIntl();
+  const [showMenu, setShowMenu] = useState(false);
   return (
-    <header>
-      <nav role="navigation">
-        <ul className='flex gap-3'>
-          {HEADER_CONST.map(({ label, path }) => (
-            <li key={path}>
-              <Link to={path}>{formatMessage({ id: label })}</Link>
-            </li>
-          ))}
-        </ul>
+    <header className="h-[80px] px-[50px] py-7">
+      <nav role="navigation" className="flex justify-between">
+        <Link
+          to="/"
+          className="font-bold text-xl"
+          onClick={() => (showMenu ? setShowMenu(false) : null)}
+        >
+          CD
+        </Link>
+        <NavMenu showMenu={showMenu} setShowMenu={setShowMenu} />
+        <img
+          src="/menu.svg"
+          alt="menu"
+          onClick={() => setShowMenu((prev) => !prev)}
+          className="cursor-pointer w-[25px] h-[23px] object-contain sm:hidden"
+        />
       </nav>
     </header>
   );
